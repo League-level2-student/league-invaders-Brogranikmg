@@ -5,12 +5,14 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
+	boolean isAlive;
 	
-	public GameObject(int x, int y, int width, int height) {
+	public GameObject(int x, int y, int width, int height, boolean isAlive) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.isAlive = isAlive;
 	}
 	
 	void update() {

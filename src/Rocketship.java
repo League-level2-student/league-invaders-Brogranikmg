@@ -8,8 +8,8 @@ public class Rocketship extends GameObject {
 	boolean left = false;
 	boolean right = false;
 	
-	public Rocketship (int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Rocketship (int x, int y, int width, int height, boolean isAlive) {
+		super(x, y, width, height, isAlive);
 		speed = 5;
 	}
 	
