@@ -9,7 +9,11 @@ public class Alien extends GameObject {
 	}
 	
 	void update() {
+		super.update();
 		y++;
+		if (y > LeagueInvaders.HEIGHT) {
+			isAlive = false;
+		}
 	}
 	
 	void draw(Graphics g) {

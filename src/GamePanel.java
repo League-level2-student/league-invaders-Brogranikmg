@@ -50,6 +50,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		manager.update();
 		manager.manageEnemies();
+		manager.checkCollision();
+		manager.purgeObjects();
+		if (rocket.isAlive == false) {
+			currentState = END_STATE;
+		}
 	}
 	
 	void drawGameState(Graphics g) {
@@ -71,7 +76,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("GAME OVER!", 45, 150);
 		g.setFont(generalFont);
 		g.drawString("You have died.", 110, 180);
-		g.drawString("You killed $ enemies.", 70, 255);
+		g.drawString("You killed " + manager.getScore() + " enemies.", 70, 255);
 		g.drawString("Press ENTER to try again.", 50, 330);
 	}
 	
@@ -101,6 +106,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == END_STATE) {
+				rocket = new Rocketship(175, 500, 50, 50);
+				manager = new ObjectManager(rocket);
+			}
 			currentState++;
 			if (currentState > END_STATE) {
 				currentState = MENU_STATE;
